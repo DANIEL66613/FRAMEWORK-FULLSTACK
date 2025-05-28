@@ -6,8 +6,8 @@ from flask import current_app, json
 from twilio.rest import Client
 from src.models.sellers import db, Seller
 
-TWILIO_ACCOUNT_SID = 'ACfbef0f945503dc98894a6c205f1e8560'
-TWILIO_AUTH_TOKEN = '1f4d1ea3d7850147e3037a76d6adfcfe' 
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = '' 
 TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'  
 DESTINATION_NUMBER = 'whatsapp:+5511952473784'  
 
@@ -31,7 +31,7 @@ class AuthService:
                 celular=celular,
                 senha=senha,
                 codigo_ativacao=codigo,
-                status=0
+                status=1
             )
             
             try:

@@ -1,0 +1,58 @@
+/* src/components/venda/VendaProduto.css */
+
+.venda-produto {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.venda-produto h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.venda-produto label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.venda-produto select,
+.venda-produto input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.venda-produto button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.venda-produto button:hover {
+  background-color: #45a049;
+}
+
+.venda-produto .mensagem {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}

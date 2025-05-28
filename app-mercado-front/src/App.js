@@ -6,7 +6,7 @@ import { useState } from 'react';
 function App(){
   return (
     <div className='App'>
-      <h1>DELANIA GOGUENTA</h1>
+      <h1>BEM VINDO AO SEU APP !</h1>
     </div>
   )
 }

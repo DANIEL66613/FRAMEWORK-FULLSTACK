@@ -1,68 +1,60 @@
-/* login.css */
+/* CadastroProduto.css */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#login {
+.cadastro-produto {
   min-height: 100vh;
   background-color: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-form {
-  background-color: #ffffff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-form h2 {
-  text-align: center;
+.cadastro-produto h2 {
   margin-bottom: 24px;
   color: #333;
 }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #555;
+.cadastro-produto form {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
 }
 
-input {
+.cadastro-produto label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.cadastro-produto input,
+.cadastro-produto select {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
-button {
+.cadastro-produto button {
   width: 100%;
   padding: 12px;
   background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 6px;
+  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.cadastro-produto button:hover {
   background-color: #0056b3;
 }
