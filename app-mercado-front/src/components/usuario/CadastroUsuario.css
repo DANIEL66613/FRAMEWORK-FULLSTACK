@@ -1,82 +1,21 @@
-.cadastro-container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.cadastro-container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.input-error {
-  border-color: #e74c3c !important;
-}
-
-.erro-mensagem {
-  color: #e74c3c;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-  display: block;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #3498db;
+.secondary-button {
+  background-color: #6c757d;
   color: white;
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.submit-button:disabled {
-  background-color: #95a5a6;
-  cursor: not-allowed;
+.secondary-button:hover {
+  background-color: #5a6268;
 }
 
-.login-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-}
-
-.login-link a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 600px) {
-  .cadastro-container {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
+small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 0.8rem;
 }

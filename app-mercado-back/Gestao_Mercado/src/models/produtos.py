@@ -1,4 +1,4 @@
-from src.extensions import db
+from src.database import db
 
 
 class Produtos(db.Model):

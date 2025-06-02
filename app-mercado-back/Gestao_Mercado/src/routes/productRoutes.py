@@ -11,12 +11,13 @@ def cadastrar_produto():
     if not all(field in data for field in required_fields):
         return jsonify({'error': 'Campos obrigatórios faltando'}), 400
 
-    return ProductsService.cadastrar(
+    produto_cadastrado = ProductsService.cadastrar(
         data['nome'],
         data['preco'],
         data['quantidade'],
         data.get('imagem')  # imagem é opcional
     )
+    return jsonify(produto_cadastrado), 201  # Retorna o produto cadastrado com status 201
 
 @products_bp.route('', methods=['GET'])
 def listar_produtos():

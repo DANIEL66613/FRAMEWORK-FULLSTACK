@@ -64,7 +64,7 @@ function CadastroProduto() {
 
       // Sucesso no cadastro
       alert("Produto cadastrado com sucesso!");
-      navigate("/produtos");
+      navigate("/produtos"); // Redireciona para a lista de produtos
     } catch (error) {
       console.error("Erro ao cadastrar produto:", error);
       setErro(error.message || "Erro ao conectar com o servidor");
