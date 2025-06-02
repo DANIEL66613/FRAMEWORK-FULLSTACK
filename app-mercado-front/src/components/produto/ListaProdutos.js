@@ -46,37 +46,39 @@ function ListaProdutos() {
 
   // Função para alterar status do produto
   const alterarStatusProduto = async (id, novoStatus) => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("Autenticação necessária");
-      }
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("Autenticação necessária");
+        }
 
-      if (!window.confirm(`Tem certeza que deseja ${novoStatus === 'inativo' ? 'inativar' : 'ativar'} este produto?`)) {
-        return;
-      }
+        if (!window.confirm(`Tem certeza que deseja ${novoStatus === 'inativo' ? 'inativar' : 'ativar'} este produto?`)) {
+          return;
+        }
 
-      const response = await fetch(`http://localhost:5000/api/products/${id}/status`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: novoStatus })
-      });
+        const response = await fetch(`http://localhost:5000/api/products/${id}/status`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ status: novoStatus })
+        });
 
-      if (!response.ok) {
-        throw new Error(`Erro ${response.status}: ${response.statusText}`);
-      }
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`Erro ${response.status}: ${errorData.message || response.statusText}`);
+        }
 
-      setSucesso(`Produto ${novoStatus === 'inativo' ? 'inativado' : 'ativado'} com sucesso!`);
-      setTimeout(() => setSucesso(null), 3000);
-      fetchProdutos(); // Atualiza a lista
-    } catch (error) {
-      console.error("Erro ao alterar status:", error);
-      setErro(error.message);
-    }
-  };
+        setSucesso(`Produto ${novoStatus === 'inativo' ? 'inativado' : 'ativado'} com sucesso!`);
+        setTimeout(() => setSucesso(null), 3000);
+        fetchProdutos(); // Atualiza a lista
+      } catch (error) {
+        console.error("Erro ao alterar status:", error);
+        setErro(error.message);
+  }
+};
+
 
   useEffect(() => {
     fetchProdutos();
@@ -110,16 +112,16 @@ function ListaProdutos() {
   }
 
   return (
-    <div className="lista-produtos-container">
-      <div className="cabecalho-lista">
-        <h2>Lista de Produtos</h2>
-        <button
-          onClick={() => navigate("/produtos/novo")}
-          className="botao-novo"
-        >
-          + Novo Produto
-        </button>
-      </div>
+     <div className="lista-produtos-container">
+       <div className="cabecalho-lista">
+         <h2>Lista de Produtos</h2>
+         <button
+           onClick={() => navigate("/cadastro-produto")} // Corrigido para a rota correta
+           className="botao-novo"
+         >
+           + Novo Produto
+         </button>
+       </div>
 
       {sucesso && <div className="mensagem-sucesso">{sucesso}</div>}
 
