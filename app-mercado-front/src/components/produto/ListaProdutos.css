@@ -1,52 +1,158 @@
-.lista-produtos {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+/* Estilos gerais */
+.lista-produtos-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.lista-produtos h2 {
-  text-align: center;
+.cabecalho-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  color: #333;
 }
 
-.lista-produtos table {
+/* Tabela */
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+.tabela-produtos {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.lista-produtos th,
-.lista-produtos td {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
+.tabela-produtos th, 
+.tabela-produtos td {
+  padding: 12px 15px;
   text-align: left;
-  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
 }
 
-.lista-produtos th {
-  background-color: #007bff;
-  color: white;
+.tabela-produtos th {
+  background-color: #f8f9fa;
   font-weight: 600;
 }
 
-.lista-produtos tr:nth-child(even) {
-  background-color: #f1f1f1;
+/* Linhas inativas */
+tr.inativo {
+  opacity: 0.7;
+  background-color: #f8f9fa;
 }
 
-.lista-produtos button {
-  margin-right: 6px;
-  padding: 6px 12px;
-  font-size: 14px;
+/* Badges de status */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+
+.status-badge.ativo {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.inativo {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Botões */
+.botao-novo {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
-  transition: background-color 0.3s ease;
 }
 
-.lista-produtos button:hover {
-  opacity: 0.}
+.botao-acao {
+  padding: 6px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.botao-acao.ver {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.botao-acao.editar {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.botao-acao.inativar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.botao-acao.ativar {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Mensagens */
+.mensagem-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.erro-container {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.sem-produtos {
+  text-align: center;
+  padding: 40px;
+}
+
+/* Carregamento */
+.carregando-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .acoes-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .botao-acao {
+    width: 100%;
+    margin: 2px 0;
+  }
+}

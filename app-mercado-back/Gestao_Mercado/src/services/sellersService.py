@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash
 from flask import current_app, json
 from twilio.rest import Client
 from src.models.sellers import db, Seller
+from werkzeug.security import generate_password_hash
 
 TWILIO_ACCOUNT_SID = ''
 TWILIO_AUTH_TOKEN = '' 
@@ -17,21 +18,26 @@ class AuthService:
     @staticmethod
     def register_seller(nome, cnpj, email, celular, senha):
         try:
+            if len(cnpj) != 14 or not cnpj.isdigit():
+                return {'error': 'CNPJ deve ter 14 dígitos numéricos'}, 400
+
             if Seller.query.filter_by(email=email).first():
                 return {'error': 'Email já cadastrado'}, 400
             
             if Seller.query.filter_by(cnpj=cnpj).first():
                 return {'error': 'CNPJ já cadastrado'}, 400
+
             
             codigo = f"{random.randint(0, 9999):04d}"
+
             novo_vendedor = Seller(
                 nome=nome,
                 cnpj=cnpj,
                 email=email,
                 celular=celular,
-                senha=senha,
+                senha=generate_password_hash(senha),
                 codigo_ativacao=codigo,
-                status=1
+                status=0
             )
             
             try:
@@ -48,6 +54,7 @@ class AuthService:
             
             db.session.add(novo_vendedor)
             db.session.commit()
+
             return {
                 'message': 'Cadastro realizado.',
                 'codigo': codigo  

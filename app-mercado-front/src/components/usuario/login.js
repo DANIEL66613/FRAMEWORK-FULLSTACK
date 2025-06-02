@@ -3,70 +3,118 @@ import './login.css';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    senha: ''
+  });
+  const [erro, setErro] = useState('');
+  const [carregando, setCarregando] = useState(false);
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setCarregando(true);
+    setErro('');
 
     try {
+      // Validação básica
+      if (!formData.email || !formData.senha) {
+        throw new Error('Preencha todos os campos');
+      }
+
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, senha }),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      const data = await response.json();
 
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          alert('Login realizado com sucesso!');
-          navigate('/produtos');
-        } else {
-          alert('Token não recebido. Verifique a resposta do servidor.');
-        }
-      } else {
-        const error = await response.json();
-        alert('Erro no login: ' + (error.message || 'Verifique suas credenciais.'));
+      if (!response.ok) {
+        throw new Error(data.message || 'Credenciais inválidas');
       }
-    } catch (err) {
-      console.error('Erro na requisição:', err);
-      alert('Erro ao conectar com o servidor.');
+
+      if (!data.token) {
+        throw new Error('Token não recebido');
+      }
+
+      // Armazena o token e redireciona
+      localStorage.setItem('token', data.token);
+
+      // Armazena dados do usuário se existirem
+      if (data.usuario) {
+        localStorage.setItem('usuario', JSON.stringify(data.usuario));
+      }
+
+      navigate('/produtos');
+    } catch (error) {
+      console.error('Erro no login:', error);
+      setErro(error.message);
+    } finally {
+      setCarregando(false);
     }
-  }
+  };
 
   return (
-    <div id="login">
-      <form onSubmit={handleLogin}>
-        <h2>Login</h2>
+    <div className="login-container">
+      <div className="login-box">
+        <h2 className="login-title">Login</h2>
 
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {erro && <div className="login-error">{erro}</div>}
 
-        <label htmlFor="senha">Senha:</label>
-        <input
-          type="password"
-          id="senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className={erro.includes('email') ? 'input-error' : ''}
+            />
+          </div>
 
-        <button type="submit">Entrar</button>
-      </form>
+          <div className="form-group">
+            <label htmlFor="senha">Senha:</label>
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
+              required
+              className={erro.includes('senha') ? 'input-error' : ''}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="login-button"
+            disabled={carregando}
+          >
+            {carregando ? 'Entrando...' : 'Entrar'}
+          </button>
+        </form>
+
+        <div className="login-links">
+          <a href="/cadastro">Criar nova conta</a>
+          <a href="/recuperar-senha">Esqueci minha senha</a>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default Login;
-

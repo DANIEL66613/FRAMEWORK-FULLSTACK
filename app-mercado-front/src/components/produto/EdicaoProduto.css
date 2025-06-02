@@ -1,44 +1,89 @@
-.edicao-produto {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+.edicao-produto-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.edicao-produto h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.titulo-edicao {
   color: #333;
+  margin-bottom: 20px;
 }
 
-.edicao-produto form {
+.formulario-edicao {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.campo-formulario {
+  margin-bottom: 15px;
+}
+
+.campo-formulario label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.campo-formulario input,
+.campo-formulario textarea,
+.campo-formulario select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.campos-duplos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.preview-imagem img {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+  border: 1px solid #eee;
+}
+
+.acoes-formulario {
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.edicao-produto input,
-.edicao-produto textarea,
-.edicao-produto select {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-.edicao-produto button {
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: #fff;
-  font-weight: bold;
+.botao-primario {
+  background: #3498db;
+  color: white;
+  padding: 10px 15px;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.edicao-produto button:hover {
-  background-color: #0056b3;
+.botao-primario:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.botao-secundario {
+  background: #e74c3c;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mensagem-erro {
+  color: #e74c3c;
+  margin: 10px 0;
+}
+
+.carregando, .erro-container {
+  text-align: center;
+  padding: 40px;
 }
